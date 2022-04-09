@@ -1,6 +1,6 @@
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- Package manager
-	--use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
+	use 'wakatime/vim-wakatime'
 	use 'gpanders/editorconfig.nvim'
 	--use 'hrsh7th/nvim-cmp' -- Completion
 	--use 'hrsh7th/cmp-nvim-lsp'
