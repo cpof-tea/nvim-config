@@ -6,9 +6,9 @@ local function syntaxStack()
 
 	utils.forEach(vim.fn.synstack(line, col), function(syntaxId) 
 		local highlightId = vim.fn.synIDtrans(syntaxId)
-        	local syntaxGroup = vim.fn.synIDattr(syntaxId, 'name')
-        	local highlightGroup = vim.fn.synIDattr(highlightId, 'name')
-        	print(syntaxGroup, '->', highlightGroup)
+		local syntaxGroup = vim.fn.synIDattr(syntaxId, 'name')
+		local highlightGroup = vim.fn.synIDattr(highlightId, 'name')
+		print(syntaxGroup, '->', highlightGroup)
 	end)
 end
 
