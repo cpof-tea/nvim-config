@@ -46,12 +46,15 @@ syntax cluster js add=jsString
 syntax region jsRegex start="\v\/[^*/]" end="\v\/[dgimsuy]?" oneline
 syntax cluster js add=jsRegex
 
-syntax keyword jsKeyword let const class super this switch case function function* yield var async await delete new typeof instanceof void debugger do while if else for in of continue import export as default from return switch case break try catch throw null
+set iskeyword+=*
+syntax keyword jsKeyword let const function function* class super this switch case yield var async await delete new typeof instanceof void debugger do while if else for in of continue import export as default from return switch case break try catch throw null
 highlight def link jsKeyword Keyword
 syntax cluster js add=jsKeyword
 
-"syntax match jsFunction "\v[[:alpha:]_$][[:alnum:]_$]*((\?\.)?\()@=" contained containedin=jsIdentifier
-"highlight def link jsFunction Function
+syntax match jsFunctionCall "\v(function\*?\s*)@<![A-z_][A-z0-9_]*\("me=e-1
+syntax match jsFunctionCall "\v[A-z_][A-z0-9_]*\?\.\("me=e-3
+highlight def link jsFunctionCall Function
+syntax cluster js add=jsFunctionCall
 
 syntax region jsPlaceholder start="\v(\\)@<!\$\{" end="\}" contained contains=@js,jsBlock
 syntax region jsTemplateLiteral start="\v`" skip="\v\\`" end="\v(\\)@<!`" contains=jsPlaceholder
