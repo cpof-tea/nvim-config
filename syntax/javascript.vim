@@ -2,8 +2,9 @@ setlocal foldmethod=syntax
 
 syntax region jsBlock transparent start="\v(\$)@<!\{" end="\v\}" contains=@js,jsBlock
 
-"syntax match jsIdentifier "\v[[:alpha:]_$][[:alnum:]_$]*"
-"highlight def link jsIdentifier Identifier
+syntax match jsIdentifier "\v(\.|\w)@<!(\$\{)@![[:alpha:]_$][[:alnum:]_$]*"
+highlight def link jsIdentifier Identifier
+syntax cluster js add=jsIdentifier
 
 "syntax match jsLetOrConst "\v(let|const)" nextgroup=jsBindingList skipwhite
 "syntax region jsBindingList start="\v((let|const)\s+)@<=." end="=" contained contains=@jsBindingPattern,jsBindingIdentifier
@@ -51,8 +52,8 @@ syntax keyword jsKeyword let const function function* class super this switch ca
 highlight def link jsKeyword Keyword
 syntax cluster js add=jsKeyword
 
-syntax match jsFunctionCall "\v(function\s+|function\*\s+|\w)@<![A-z_][A-z0-9_]*\("me=e-1
-syntax match jsFunctionCall "\v[A-z_][A-z0-9_]*\?\.\("me=e-3
+syntax match jsFunctionCall "\v(function\s+|function\*\s+|\w)@<![A-z_$][A-z0-9_$]*\("me=e-1
+syntax match jsFunctionCall "\v[A-z_$][A-z0-9_$]*\?\.\("me=e-3
 highlight def link jsFunctionCall Function
 syntax cluster js add=jsFunctionCall
 
