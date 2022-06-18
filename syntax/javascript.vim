@@ -34,7 +34,7 @@ syntax keyword jsNumber NaN Infinity
 highlight def link jsNumber Number
 syntax cluster js add=jsNumber
 
-syntax match jsComment "\v\/\/.+"
+syntax match jsComment "\v\/\/(.+)?"
 syntax region jsComment start="\v\/\*" end="\v\*\/"
 syntax sync ccomment jsComment
 highlight def link jsComment Comment
