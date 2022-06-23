@@ -1,14 +1,14 @@
 setlocal foldmethod=syntax
 
-"syntax region jsBlock transparent start="\v(\$)@<!\{" end="\v\}" contains=@js,jsBlock
+syntax region jsBlock transparent start="\(\$\)\@<!{" end="}" contains=@js,jsBlock
+
+syntax match jsFunctionCall "\I\i*\ze\(\s*\|?\.\)(" contained containedin=jsObjectProperty,jsIdentifier
+highlight def link jsFunctionCall Function
 
 set isident+=$
 syntax match jsIdentifier "\<\I\i*\>" 
 highlight def link jsIdentifier Identifier
 syntax cluster js add=jsIdentifier
-
-syntax match jsFunctionCall "\I\i*\ze\(\s*\|?\.\)(" contained containedin=jsObjectProperty,jsIdentifier
-highlight def link jsFunctionCall Function
 
 syntax match jsObjectProperty "\(\.\)\@<=\<\I\i*\>" contained containedin=jsIdentifier
 
@@ -47,10 +47,9 @@ syntax cluster js add=jsString
 syntax region jsRegex start="\v\/[^*/]" end="\v\/[dgimsuy]?" oneline
 syntax cluster js add=jsRegex
 
-syntax keyword jsKeyword let const function class extends super static this switch case yield var async await delete new typeof instanceof void debugger do while if else for in of continue import export as default from return switch case break try catch throw null
+syntax match jsKeyword "\(\.\)\@<!\<\(let\|const\|function\|class\|extends\|super\|static\|this\|switch\|case\|yield\|var\|async\|await\|delete\|new\|typeof\|instanceof\|void\|debugger\|do\|while\|if\|else\|for\|in\|of\|continue\|import\|export\|as\|default\|from\|return\|break\|try\|throw\|null\|undefined\|get\|set\)\>"
 highlight def link jsKeyword Keyword
 syntax cluster js add=jsKeyword
-
 
 syntax region jsPlaceholder start="\v(\\)@<!\$\{"rs=s-1 end="\}" contained contains=@js,jsBlock
 syntax region jsTemplateLiteral start="\v`" skip="\v\\`" end="\v(\\)@<!`" contains=jsPlaceholder
