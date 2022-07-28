@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.tsx		set syntax=javascript
+au BufRead,BufNewFile *.ts		set syntax=javascript
